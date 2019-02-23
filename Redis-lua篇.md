@@ -1,5 +1,4 @@
 # Redis-lua篇
-标签（空格分隔）： Redis
 ---
 ## 在redis2.6之后可以调用lua脚本
 ## 1.lua是什么
