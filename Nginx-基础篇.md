@@ -33,17 +33,17 @@
 ## 4.配置
 >+ 三个核心配置
     - main 
-        - worker_processes 1; #工作进程数
-        - error_log logs/error.log notice #日志输出
+        - worker_processes 1; 工作进程数
+        - error_log logs/error.log notice 日志输出
     - events 
         - worker_connections 1024;
     - http
-        - log_format myformat .... #日志格式
+        - log_format myformat .... 日志格式
         - access_log logs/access.log myformat;
         - server
-            - listen 80; #监听端口
-            - server_name www.hzexiu.com; #域名
-            - location /  # 匹配规则-根据用户请求的uri
+            - listen 80; 监听端口
+            - server_name www.hzexiu.com; 域名
+            - location /  匹配规则-根据用户请求的uri
 + 虚拟主机设置
     - 基于端口
     - 基于域名
