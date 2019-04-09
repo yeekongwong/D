@@ -8,10 +8,10 @@
 >3.max file descriptors [4096] for elasticsearch process likely too low, increase to at least [65536]
 max number of threads [1024] for user [lwuser] likely too low, increase to at least [2048]
 解决办法：修改 /etc/security/limits.conf 添加以下参数
-* soft nofile 65536
-* hard nofile 131072
-* soft nproc 2048
-* hard nproc 4096
+*soft nofile 65536
+*hard nofile 131072
+*soft nproc 2048
+*hard nproc 4096
 使用以下命令查看是否修改成功
 ulimit -Hn
 ulimit -Sn
