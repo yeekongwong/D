@@ -1,0 +1,55 @@
+# 检查cc gcc编译环境
+whereis cc gcc
+
+cc: /usr/bin/cc
+gcc: /usr/bin/gcc /usr/lib/gcc /usr/libexec/gcc /usr/share/man/man1/gcc.1.gz
+
+# 如果为空则缺少编译环境，云安装编译源码所需的工具和库
+yum -y install make gcc gcc-c++ ncurses-devel
+yum -y install pcre-devel zlib zlib-devel openssl openssl-devel
+
+
+1.安装nginx
+cd /home
+$ wget http://nginx.org/download/nginx-1.12.1.tar.gz
+$ tar -zxvf nginx-1.12.1.tar.gz
+
+创建一个nginx 用户
+
+ groupadd -r nginx
+ useradd -s /sbin/nologin -g nginx -r nginx
+
+安装
+ cd nginx-1.12.1
+yum -y install pcre-devel
+
+ ./configure --prefix=/usr/local/nginx --user=nginx --group=nginx
+ make && make install
+
+启动
+ /usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf
+
+查看服务器是否启动成功
+$ ps -ef | grep nginx
+
+$ netstat -tulnp | grep nginx
+
+停止nginx 
+
+从容停止Nginx：
+kill -QUIT $(cat /usr/local/nginx/logs/nginx.pid)
+快速停止Nginx：
+kill -TERM $(cat /usr/local/nginx/logs/nginx.pid)
+强制停止Nginx：
+pkill -9 nginx
+
+
+
+/usr/local/nginx/sbin/nginx -s  reload 
+
+
+判断Nginx配置是否正确命令如下：
+/usr/local/nginx/sbin/nginx -t -c /usr/local/nginx/conf/nginx.conf
+
+遇到的坑：
+因为启动nginx时是用了nginx的用户，但有些文件的权限是root的用户和组，导致访问不到。例如在nginx下的proxy_temp文件夹权限，因为在项目中配置了代理
